@@ -56,7 +56,11 @@ object Alarms {
         intent.putExtra("titles", next.titles.joinToString(", "))
         val pi = PendingIntent.getBroadcast(c, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         val show = PendingIntent.getActivity(c, 2, Intent(c, MainActivity::class.java), PendingIntent.FLAG_IMMUTABLE)
-        am.setAlarmClock(AlarmManager.AlarmClockInfo(next.at, show), pi)
+        try {
+            am.setAlarmClock(AlarmManager.AlarmClockInfo(next.at, show), pi)
+        } catch (e: SecurityException) {
+            // sin permiso de alarmas exactas: no cierres la app
+        }
     }
 
     fun ring(c: Context, time: String, text: String) {
