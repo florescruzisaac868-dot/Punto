@@ -74,7 +74,8 @@ private val dayNames = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Vierne
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState) if (installCrashGuard()) return
+        super.onCreate(savedInstanceState)
+        if (installCrashGuard()) return
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(AColor.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.dark(AColor.TRANSPARENT)
